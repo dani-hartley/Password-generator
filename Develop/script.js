@@ -12,12 +12,37 @@
 
 
 //Password Variables - Arrays
-var uppercase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var lowercase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var uppercase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var number = ['0','1','2','3','4','5','6','7','8','9'];
-var characters =['!','@','#','$','%','^','&','*','(',')','+','=',',','.','<','>','?','/'];
+var special =['!','@','#','$','%','^','&','*','(',')','+','=',',','.','<','>','?','/'];
 
 // User prompts - Define password criteria
+
+// Generate Function
+
+var userInput = function() {
+  // User chooses password length
+  var confirmlength = (prompt("How many characters would you like in your password? Choose between 8 and 128"));
+  while (confirmlength < 8 || confirmlength > 128) {
+    alert("Password length must be between 8-128 characters. Try again.");
+    return userInput();
+  }
+  // User prompt for Characters
+  var includeLower =confirm("Do you want to include lowercase characters?");
+  var includeUpper =confirm("Do you want to include uppercase characters?");
+  var includeNumber =confirm("Do you want to include numeric characters?");
+  var includeSpecial =confirm("Do you want to include special characters?");
+  // Condition - must include characters
+  while (!includeLower && !includeUpper && !includeNumber && !includeSpecial) {
+    alert("Your password must contain at least one lowercase, uppercase, numeric, or special character");
+    return;
+  }
+}
+
+userInput ();
+
+
 
 
 
