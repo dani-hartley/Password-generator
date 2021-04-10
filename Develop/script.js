@@ -18,12 +18,16 @@ var number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var special = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '=', ',', '.', '<', '>', '?', '/'];
 
 // User prompts - Define password criteria
-
 // Generate Function
 
 var generatePassword = function () {
   // User chooses password length
   var confirmlength = parseInt(prompt("How many characters would you like in your password? Choose between 8 and 128"));
+  if(isNaN(confirmlength) === true){
+    alert("Must be a number!")
+    return generatePassword();
+  }
+  //confirm length is within the correct parameters 
   if (confirmlength < 8 || confirmlength > 128) {
     alert("Password length must be between 8-128 characters. Try again.");
     return generatePassword();
@@ -59,6 +63,19 @@ var generatePassword = function () {
   if (includeSpecial) {
     passwordCharacters = passwordCharacters.concat(special)
   }
+
+  var randomPasswordArray = [];
+  // For loop creating the random password
+  for (var i = 0; i < confirmlength; i++) {
+    // Randomly get a number between 0 and the length of passwordCharacters
+    // with the random number I would get an element out of passwordCharacters
+    // I will push the random element to randomPasswordArray
+  var randomIndex = Math.floor(Math.random() * passwordCharacters.length);
+  var randomCaharacter = passwordCharacters[randomIndex];
+  randomPasswordArray.push(randomCaharacter);
+   //console.log (randomPassword);
+  }
+ return randomPasswordArray.join('');
   
 };
 
