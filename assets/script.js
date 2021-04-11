@@ -44,4 +44,52 @@ var generatePassword = function () {
         alert("Your password must contain at least one lowercase, uppercase, numeric, or special character");
         return generatePassword();
     }
+
+    // Combine all the arrays into a new array that are the user selected characters
+  var passwordCharacters = []
+
+  if (includeLower) {
+    passwordCharacters = passwordCharacters.concat(lowercase)
+  }
+
+  if (includeUpper) {
+    passwordCharacters = passwordCharacters.concat(uppercase)
+  }
+
+  if (includeNumber) {
+    passwordCharacters = passwordCharacters.concat(number)
+
+  }
+
+  if (includeSpecial) {
+    passwordCharacters = passwordCharacters.concat(special)
+  }
+
+  var randomPasswordArray = [];
+  // For loop creating the random password
+  for (var i = 0; i < confirmlength; i++) {
+    // Randomly get a number between 0 and the length of passwordCharacters
+    // with the random number I would get an element out of passwordCharacters
+    // I will push the random element to randomPasswordArray
+  var randomIndex = Math.floor(Math.random() * passwordCharacters.length);
+  var randomCaharacter = passwordCharacters[randomIndex];
+  randomPasswordArray.push(randomCaharacter);
+   //console.log (randomPassword);
+  }
+ return randomPasswordArray.join('');
 };
+
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
